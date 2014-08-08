@@ -1,0 +1,3 @@
+== README
+
+Destiny raid finder web app. We'll see how this goes
