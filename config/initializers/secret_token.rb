@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-VaultOfGlassLogin::Application.config.secret_key_base = '09d22b6eaae6bc8c2e7413b10db77cb3538aa5a4fd98764eca008d94a7715f1921301396d1809dde562881b0271cfa8217821378cc8407fd0fab353e92931f78'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+VaultOfGlassLogin::Application.config.secret_key_base = '827db5c978630d8bec453c64fee30db3886af36ba609157fd25a2cbd75d8e84a384cd0c0f77e7db30c356b259b648c9149ef8a04aaf1ba7d69fb1e5827a8acc1'
