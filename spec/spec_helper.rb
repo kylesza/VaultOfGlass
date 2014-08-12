@@ -21,6 +21,11 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
+  # This file is copied to spec/ when you run 'rails generate rspec:install'
+RSpec.configure do |config|
+  config.include Capybara::DSL
+end
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
